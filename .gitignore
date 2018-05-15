@@ -4,8 +4,6 @@ node_modules
 .vs
 .vscode
 .idea
-bin
-lib
 obj
 out
 output

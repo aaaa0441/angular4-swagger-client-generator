@@ -5,7 +5,7 @@ import { {{.}} } from './{{#lower}}{{.}}{{/lower}}.model';
 {{#enums}}
 export enum {{name}} {
   {{#values}}
-  {{#upper}}{{value}}{{/upper}} = '{{value}}'{{^isLast}},{{/isLast}}
+  '{{#upper}}{{symbol}}{{/upper}}' = {{#isString}}'{{/isString}}{{value}}{{#isString}}'{{/isString}}{{^isLast}},{{/isLast}}
   {{/values}}
 }
 

@@ -20,7 +20,7 @@ const enumValueToObject = (enumMap, prop) => (value, index) => ({
     symbol: enumMap[value] || value + '',
     value,
     isLast: index === prop.enum.length - 1,
-    isString: prop.typescriptType === 'string'
+    isString: prop.typescriptType === 'string' || prop.type === 'string'
 });
 
 const populateEnumValues = (enums, prop, enumeration) => {

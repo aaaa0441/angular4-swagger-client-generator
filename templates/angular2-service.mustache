@@ -1,6 +1,6 @@
 import { Inject, Injectable, Optional } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpParams, HttpResponse } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable } from 'rxjs/Observable';
 
 import {
 {{#definitions}}
@@ -47,7 +47,7 @@ export class ApiClientService {
   * @return Full HTTP response as Observable
   */
   public {{&methodName}}({{#parameters}}{{&camelCaseName}}: {{typescriptType}}{{^isLast}}, {{/isLast}}{{/parameters}}): Observable<HttpResponse<{{&response}}>> {
-    let uri = `{{&backTickPath}}`;
+    const uri = `{{&backTickPath}}`;
     let headers = new HttpHeaders();
     let params = new HttpParams();
     {{#parameters}}
@@ -101,7 +101,7 @@ export class ApiClientService {
 {{/methods}}
   private sendRequest<T>(method: string, uri: string, headers: HttpHeaders, params: HttpParams, body: any): Observable<HttpResponse<T>> {
     if (method === 'get') {
-      return this.http.get<T>(this.domain + uri, { headers: headers.set('Accept', 'application/json'), params: params, observe: 'response' });
+      return this.http.get<T>(this.domain + uri, { headers: headers.set('Accept', 'application/json+hal'), params: params, observe: 'response' });
     } else if (method === 'put') {
       return this.http.put<T>(this.domain + uri, body, { headers: headers.set('Content-Type', 'application/json'), params: params, observe: 'response' });
     } else if (method === 'post') {

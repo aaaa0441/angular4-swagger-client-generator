@@ -7,7 +7,7 @@ const _ = require('lodash');
 const LOWERCASE_RENDERER = () => (text, render) => render(text).toLowerCase();
 const UPPERCASE_RENDERER = () => (text, render) => render(text).toUpperCase();
 
-const getEnumMapFrom = description => (description || '').split('\r\n')
+const getEnumMapFrom = description => (description || '').split(/\r\n|<br\/>|,/g)
     .map(str => str.trim())
     .filter(Boolean)
     .map(str => str.split('=').map(innerStr => innerStr.trim()))
